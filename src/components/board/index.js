@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Square from "../square";
 
 const Board = () => {
@@ -8,18 +8,16 @@ const Board = () => {
   const [status, setStatus] = useState(`Next player: ${xIsNext ? "X" : "O"}`);
 
   const handleClick = (i) => {
-    // make a copy of board
-    const updatedSquares = squares.slice();
-
+    // do not continue if space is filled
     if (squares[i]) {
       return;
     }
 
+    // make a copy of board
+    const updatedSquares = squares.slice();
+
     // update a value on the board
     updatedSquares[i] = xIsNext ? "X" : "O";
-
-    // change player
-    setXisNext(!xIsNext);
 
     // set board with new values
     setSquares(updatedSquares);
@@ -30,6 +28,9 @@ const Board = () => {
       setStatus(`Winner: ${isWinner}`);
       return;
     }
+
+    // change player
+    setXisNext((previousValue) => !previousValue);
 
     // TBD - Fix logic so xIsNext changes default when true
     setStatus(`Next player: ${xIsNext ? "O" : "X"}`);
