@@ -31,6 +31,7 @@ const Board = () => {
       return;
     }
 
+    // TBD - Fix logic so xIsNext changes default when true
     setStatus(`Next player: ${xIsNext ? "O" : "X"}`);
   };
 
