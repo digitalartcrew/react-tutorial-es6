@@ -18,6 +18,9 @@ const Board = () => {
     // update a value on the board
     updatedSquares[i] = xIsNext ? "X" : "O";
 
+    // change player
+    setXisNext(!xIsNext);
+
     // set board with new values
     setSquares(updatedSquares);
 
@@ -28,8 +31,6 @@ const Board = () => {
       return;
     }
 
-    // change player
-    setXisNext(!xIsNext);
     setStatus(`Next player: ${xIsNext ? "O" : "X"}`);
   };
 
